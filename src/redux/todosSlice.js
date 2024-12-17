@@ -12,8 +12,11 @@ const todosSlice = createSlice({
     REMOVE_TO_DO(state, action) {
       return state.filter((toDo) => toDo.id !== action.payload);
     },
+    TOGGLE_COMPLETED(state, action) {
+      return state.map((toDo) => (toDo.id === action.payload ? { ...toDo, completed: !toDo.completed } : toDo));
+    },
   },
 });
 
-export const { ADD_TO_DO, REMOVE_TO_DO } = todosSlice.actions;
+export const { ADD_TO_DO, REMOVE_TO_DO, TOGGLE_COMPLETED } = todosSlice.actions;
 export default todosSlice.reducer;
